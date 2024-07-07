@@ -1,3 +1,5 @@
+#### Helpers files
+
 asked: When programming in C, if I want to put all of my helper functions in their own C file (e.g. `myhelpers.c`) that will be linked to the main function file, do I also need a header file containing the forward declarations of the helpers? If so, why?
 
 The short answer is it depends on the version of the C compiler you are using and how strict the implementors of the compiler are being in conforming to the ISO ‘C99’ definition (you should get an error or at least a warning), while traditional C compiler implementations may be silent — “just work.”
@@ -31,3 +33,49 @@ While Pascal became a popular programming language, it had other issues and even
 So the answer to your question becomes, since most modern compilers, such as [clang](https://en.wikipedia.org/wiki/Clang "en.wikipedia.org") require formal definitions for all global variables and functions (or, for that matter, globally static to the specific module). Using an external header file for those definitions is more straightforward and, frankly, considered good hygiene. That said, compilers such as [gcc](https://en.wikipedia.org/wiki/GNU_Compiler_Collection "en.wikipedia.org"), may return a warning as opposed to an error if the programmer is sloppy and doesn’t define everything before you try to use it.
 
 As a minor footnote, as the standard has become more strict/compiler implementations moving from warnings to full errors, such as in the case of clang, modern C programming style recommendations have followed the C language programming style found in the 1988 edition K&R2 - a.k.a. “White Book C” - [using function prototypes and explicit typing], which somewhat differs from the original style in K&R1 of 1978.
+
+#### Pointers
+
+To declare a variable that stores the address of another variable, you use `*`:
+
+`int *ptr;`
+
+Here, `ptr` is declared as a pointer to an `int`. This means `ptr` can hold the address of a variable of type `int`.
+
+### 2. Dereferencing Operator
+
+The `*` operator is also used to access the value at the memory address stored by a pointer. For example:
+
+`int value = 10; int *ptr = &value; // ptr now holds the address of variable value  printf("%d\n", *ptr); // Prints the value of variable value, which is 10`
+
+Here, `*ptr` is used to access the value of `value` through the pointer `ptr`. This is known as dereferencing the pointer.
+
+### 3. Passing by Reference in Functions
+
+In C, function parameters are normally passed by value, meaning a copy of the data is passed to the function. However, by passing a pointer to a function, you can pass the address of the variable to allow the function to modify the original variable. For example:
+
+`void increment(int *num) {     (*num)++; // Increment the value pointed to by num }  int main() {     int x = 5;     increment(&x); // Pass the address of x to the increment function     printf("%d\n", x); // Prints 6, as x was incremented in the function     return 0; }`
+
+In this example, `int *num` in the `increment` function indicates that `num` is a pointer to an `int`. By using `*num`, we access the value at the address pointed to by `num` (dereferencing).
+
+### 4. Dynamic Memory Allocation
+
+In C, you can allocate memory using functions like `malloc`, which returns a pointer to the allocated memory:
+
+`int *arr = malloc(10 * sizeof(int)); // Allocates an array of 10 ints`
+
+Here, `arr` is a pointer to a block of memory that can hold 10 integers. You use `*arr` to access individual values in the array.
+
+### 5. Arrays
+
+In C, arrays are often manipulated using pointers. For example:
+
+`int arr[5] = {1, 2, 3, 4, 5}; int *ptr = arr; // ptr points to the first element of the array  printf("%d\n", *ptr); // Prints the first element of arr, which is 1`
+
+In this example, `ptr` is a pointer to the first element of `arr`. `*ptr` accesses the value of the first element of the array.
+
+### Conclusion
+
+In summary, `*` in C is primarily used to declare pointers, dereference pointers to access pointed-to values, dynamically manage memory, and manipulate arrays. Understanding these concepts is essential for effectively and correctly using pointers in C.
+
+
