@@ -83,11 +83,9 @@ int main(int argc, string argv[])
                 return 3;
             }
         }
-        printf("ranks after loop %i %i %i\n", ranks[0], ranks[1], ranks[2]);
+       
         record_preferences(ranks);
-        printf("%i - %i - %i\n", preferences[0][0], preferences[0][1], preferences[0][2]);
-        printf("%i - %i - %i\n", preferences[1][0], preferences[1][1], preferences[1][2]);
-        printf("%i - %i - %i\n", preferences[2][0], preferences[2][1], preferences[2][2]);
+
 
         printf("\n");
     }
@@ -155,9 +153,7 @@ void add_pairs(void)
                 pair_count++;
             }
         }
-        printf("[winner:%i, loser:%i]\n[winner:%i, loser:%i]\n[winner:%i, loser:%i]\n",
-               pairs[0].winner, pairs[0].loser, pairs[1].winner, pairs[1].loser, pairs[2].winner,
-               pairs[2].loser);
+    
     }
 
     return;
@@ -187,33 +183,61 @@ void sort_pairs(void)
     return;
 }
 
+bool cycle(int end, int cycle_start)
+{
+    // Return true if there is a cycle created (Recursion base case)
+    if (end == cycle_start)
+    {
+        return true;
+    }
+    // Loop through candidates (Recursive case)
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[end][i])
+        {
+            if (cycle(i, cycle_start))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    //     function lock_pairs:
-    //     for each pair in pairs:
-    //         if adding pair to locked graph does not create cycle:
-    //             add pair to locked graph
+    // Loop through pairs
+    for (int i = 0; i < pair_count; i++)
+    {
+        // If cycle function returns false, lock the pair
+        if (!cycle(pairs[i].loser, pairs[i].winner))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
 
-    // function creates_cycle (start, end):
-    //     if there is a direct path from end to start in locked graph:
-    //         return true
-    //     for each candidate c that end points to in locked graph:
-    //         if creates_cycle(start, c) is true:
-    //             return true
-    //     return false
-    // TODO
     return;
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
-    for (int i = 0; i < locked; i++)
+    // Winner is the candidate with no arrows pointing to them
+    for (int i = 0; i < candidate_count; i++)
     {
-        for (int j = i + 1; j < locked; j++)
+        int false_count = 0;
+        for (int j = 0; j < candidate_count; j++)
         {
+            if (locked[j][i] == false)
+            {
+                false_count++;
+                if (false_count == candidate_count)
+                {
+                    printf("%s\n", candidates[i]);
+                }
+            }
         }
-    };
+    }
     return;
 }
