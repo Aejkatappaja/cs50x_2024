@@ -70,7 +70,7 @@
     
 - In your terminal window, type `code addresses.c` and write your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -88,14 +88,14 @@
     
 - The `C` language has two powerful operators that relate to memory:
     
-    ```
+    ```c
       & Provides the address of something stored in memory.
       * Instructs the compiler to go to a location in memory.
     ```
     
 - We can leverage this knowledge by modifying our code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -113,7 +113,7 @@
 - A _pointer_ is a variable that contains the address of some value. Most succinctly, a pointer is an address in your computer’s memory.
 - Consider the following code:
     
-    ```
+    ```c
     int n = 50;
     
     int *p = &n;
@@ -123,7 +123,7 @@
     
 - Modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -138,7 +138,7 @@
     
 - To illustrate the use of the `*` operator, consider the following:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -177,7 +177,7 @@
     
 - Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -196,7 +196,7 @@
     
 - Likewise, you can modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -217,7 +217,7 @@
 
 - You can modify your code to accomplish the same thing in a longer form as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -233,7 +233,7 @@
     
 - Further, you can modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -253,7 +253,7 @@
 - A string of characters is simply an array of characters identified by its first byte.
 - Earlier in the course, we considered the comparison of integers. We could represent this in code by typing `code compare.c` into the terminal window and writing code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -281,7 +281,7 @@
 - Utilizing the `==` operator in an attempt to compare strings will attempt to compare the memory locations of the strings instead of the characters therein. Accordingly, we recommended the use of `strcmp`.
 - To illustrate this, modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -312,7 +312,7 @@
 - Therefore, the code for `compare.c` above is actually attempting to see if the memory addresses are different: not the strings themselves.
 - Using `strcmp`, we can correct our code:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     #include <string.h>
@@ -339,7 +339,7 @@
     
 - To further illustrate how these two strings are living in two locations, modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -359,7 +359,7 @@
     
 - You can see the locations of these two stored strings with a small modification:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -383,7 +383,7 @@
 - A common need in programming is to copy one string to another.
 - In your terminal window, type `code copy.c` and write code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -416,7 +416,7 @@
     
 - Before we address this challenge, it’s important to ensure that we don’t experience a _segmentation fault_ through our code, where we attempt to copy `string s` to `string t`, where `string t` does not exist. We can employ the `strlen` function as follows to assist with that:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -448,7 +448,7 @@
     
 - We can modify our code to create an authentic copy of our string as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -482,7 +482,7 @@
     
 - It turns out that there is an inefficiency in our code. Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -516,7 +516,7 @@
     
 - The `C` Language has a built-in function to copy strings called `strcpy`. It can be implemented as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -547,7 +547,7 @@
     
 - Both `get_string` and `malloc` return `NULL`, a special value in memory, in the event that something goes wrong. You can write code that can check for this `NULL` condition as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -597,7 +597,7 @@
 - _Valgrind_ is a tool that can check to see if there are memory-related issues with your programs wherein you utilized `malloc`. Specifically, it checks to see if you `free` all the memory you allocated.
 - Consider the following code for `memory.c`:
     
-    ```
+    ```c
     #include <stdio.h>
     #include <stdlib.h>
     
@@ -615,7 +615,7 @@
 - If you type `make memory` followed by `valgrind ./memory`, you will get a report from valgrind that will report where memory has been lost as a result of your program. One error that valgrind reveals is that we attempted to assign the value of `33` at the 4th position of the array, where we only allocated an array of size `3`. Another error is that we never freed `x`.
 - You can modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     #include <stdlib.h>
     
@@ -637,7 +637,7 @@
 - When you ask the compiler for a block of memory, there is no guarantee that this memory will be empty.
 - It’s very possible that this memory that you allocated was previously utilized by the computer. Accordingly, you may see _junk_ or _garbage values_. This is a result of you getting a block of memory but not initializing it. For example, consider the following code for `garbage.c`:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -661,7 +661,7 @@
 
 - In the real world, a common need in programming is to swap two values. Naturally, it’s hard to swap two variables without a temporary holding space. In practice, you can type `code swap.c` and write code as follows to see this in action:
     
-    ```
+    ```c
     #include <stdio.h>
     
     void swap(int a, int b);
@@ -700,7 +700,7 @@
     
 - Modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     void swap(int *a, int *b);
@@ -742,7 +742,7 @@
 - `scanf` is a built-in function that can get user input.
 - We can reimplement `get_int` rather easily using `scanf` as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -758,7 +758,7 @@
     
 - However, attempting to reimplement `get_string` is not easy. Consider the following:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -774,7 +774,7 @@
     
 - Further, your code could be modified as follows. However, we have to pre-allocate a certain amount of memory for a string:
     
-    ```
+    ```c
     #include <stdio.h>
     #include <stdlib.h>
     
@@ -797,7 +797,7 @@
     
 - Simplifying our code as follows we can further understand this essential problem of pre-allocation:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -817,7 +817,7 @@
 
 - You can read from and manipulate files. While this topic will be discussed further in a future week, consider the following code for `phonebook.c`:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     #include <string.h>
@@ -844,7 +844,7 @@
 - You can create a file called `phonebook.csv` in advance of running the above code. After running the above program and inputting a name and phone number, you will notice that this data persists in your CSV file.
 - If we want to ensure that `phonebook.csv` exists prior to running the program, we can modify our code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     #include <string.h>
@@ -874,7 +874,7 @@
     
 - We can implement our own copy program by typing `code cp.c` and writing code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     #include <stdint.h>
     
