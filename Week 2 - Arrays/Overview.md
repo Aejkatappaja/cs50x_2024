@@ -25,7 +25,7 @@
 - Recall that last week you learned about a _compiler_, a specialized computer program that converts _source code_ into _machine code_ that can be understood by a computer.
 - For example, you might have a computer program that looks like this:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -43,7 +43,7 @@
 - VS Code has been pre-programmed such that `make` will run numerous command line arguments along with clang for your convenience as a user.
 - Consider the following code:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -61,7 +61,7 @@
 - Compiling involves major steps, including the following:
     - First, _preprocessing_ is where the header files in your code, designated by a `#` (such as `#include <cs50.h>`) are effectively copied and pasted into your file. During this step, the code from `cs50.h` is copied into your program. Similarly, just as your code contains `#include <stdio.h>`, code contained within `stdio.h` somewhere on your computer is copied to your program. This step can be visualized as follows:
         
-        ```
+        ```c
         string get_string(string prompt);
         int printf(string format, ...);
         
@@ -94,7 +94,7 @@
     
 - Further, consider the following code that has a bug purposely inserted within it:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -110,7 +110,7 @@
 - Running this code, four bricks appear instead of the intended three.
 - `printf` is a very useful way of debugging your code. You could modify your code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -125,7 +125,7 @@
     
 - Running this code, you will see numerous statements, including `i is 0`, `i is 1`, `i is 2`, and `i is 3`. Seeing this, you might realize that Further code needs to be corrected as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -141,7 +141,7 @@
     
 - This code can be further improved as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -200,7 +200,7 @@
     
 - We can create a program that explores these concepts. Inside your terminal, type `code scores.c` and write code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -225,7 +225,7 @@
 - _Arrays_ are a way of storing data back-to-back in memory such that this data is easily accessible.
 - `int scores[3]` is a way of telling the compiler to provide you three back-to-back places in memory of size `int` to store three `scores`. Considering our program, you can revise your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -246,7 +246,7 @@
     
 - You can see how while the above code works, there is still an opportunity for improving our code. Revise your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -268,7 +268,7 @@
     
 - We can simplify or _abstract away_ the calculation of the average. Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -320,7 +320,7 @@
     
 - Implementing this in your own code, type `code hi.c` in the terminal window and write code as follows:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -337,7 +337,7 @@
     
 - Similarly, make the following modification to your code:
     
-    ```
+    ```c
     #include <stdio.h>
     
     int main(void)
@@ -354,7 +354,7 @@
     
 - To further understand how a `string` works, revise your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -369,7 +369,7 @@
     
 - As before, we can replace `%c` with `%i` as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -384,7 +384,7 @@
     
 - Let’s imagine we want to say both `HI!` and `BYE!`. Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -406,7 +406,7 @@
     
 - We can further improve this code. Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -429,7 +429,7 @@
 
 - A common problem within programming, and perhaps C more specifically, is to discover the length of an array. How could we implement this in code? Type `code length.c` in the terminal window and code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -452,7 +452,7 @@
     
 - This code can ben improved by abstracting away the counting as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -480,7 +480,7 @@
     
 - Since this is such a common problem within programming, other programmers have created code in the `string.h` library to find the length of a string. You can find the length of a string by modifying your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     #include <string.h>
@@ -498,7 +498,7 @@
     
 - `ctype.h` is another library that is quite useful. Imagine we wanted to create a program that converted all lowercase characters to uppercase ones. In the terminal window type `code uppercase.c` and write code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     #include <string.h>
@@ -531,7 +531,7 @@
 - When a lowercase character has `32` subtracted from it, it results in an uppercase version of that same character.
 - While the program does what we want, there is an easier way using the `ctype.h` library. Modify your program as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -560,7 +560,7 @@
     
 - It’s worth mentioning that `toupper` automatically knows to uppercase only lowercase characters. Hence, your code can be simplified as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <ctype.h>
     #include <stdio.h>
@@ -587,7 +587,7 @@
 - `Command-line arguments` are those arguments that are passed to your program at the command line. For example, all those statements you typed after `clang` are considered command line arguments. You can use these arguments in your own programs!
 - In your terminal window, type `code greet.c` and write code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -602,7 +602,7 @@
     
 - Still, would it not be nice to be able to take arguments before the program even runs? Modify your code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
@@ -629,7 +629,7 @@
 - When a program exits without error, a status code of `0` is provided the computer. Often, when an error occurs that results in the program ending, a status of `1` is provided by the computer.
 - You could write a program as follows that illustrates this by typing `code status.c` and writing code as follows:
     
-    ```
+    ```c
     #include <cs50.h>
     #include <stdio.h>
     
