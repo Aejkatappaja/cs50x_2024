@@ -1,0 +1,13 @@
+<header>
+<p>
+<a>
+<img>
+<main>
+<footer>
+<h5>
+<span>
+<section>
+<article>
+<div>
+
+I choosed to use JS with Bootstrap to trigger a toast !
